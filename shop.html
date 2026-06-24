@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Goggles | Shariqa Eyewear</title>
+    <meta name="description" content="Browse 60 Shariqa Eyewear goggles across male, female and child categories.">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="top-strip">
+      <span>Call 9643528235</span>
+      <span>20 designs in every category</span>
+      <span>Email sharixa393@gmail.com</span>
+    </div>
+
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Shariqa Eyewear home"><img src="assets/logo.svg" alt="Shariqa Eyewear"></a>
+      <nav class="nav" data-nav>
+        <a href="index.html">Home</a>
+        <a class="active" href="shop.html">Shop</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <button class="menu-button" type="button" data-menu aria-label="Open menu"><span data-icon="menu"></span></button>
+        <button class="icon-button" type="button" data-open-cart aria-label="Open wishlist"><span data-icon="heart"></span><span class="badge" data-wishlist-count>0</span></button>
+        <button class="icon-button" type="button" data-open-cart aria-label="Open cart"><span data-icon="bag"></span><span class="badge" data-cart-count>0</span></button>
+      </div>
+    </header>
+
+    <main>
+      <section class="page-hero">
+        <span class="eyebrow">Shariqa Catalogue</span>
+        <h1>Shop by male, female and child goggles.</h1>
+        <p>Use category tabs, search and sorting to browse all 60 styles. Add frames to the selection drawer and send the inquiry to Shariqa.</p>
+      </section>
+
+      <section class="section">
+        <div class="section-header reveal">
+          <div>
+            <span class="eyebrow">Collections</span>
+            <h2>Every category has 20 images.</h2>
+          </div>
+          <p>The catalogue keeps the shopping flow simple: filter the room, compare product cards, wishlist styles and send an order interest.</p>
+        </div>
+
+        <div class="toolbar reveal">
+          <label class="search-box" aria-label="Search goggles">
+            <span data-icon="search"></span>
+            <input data-search type="search" placeholder="Search by name, fit, UV, polarized...">
+          </label>
+          <div class="tabs" aria-label="Category tabs">
+            <button class="tab active" type="button" data-tab="all">All <span data-count="all">60</span></button>
+            <button class="tab" type="button" data-tab="men">Male <span data-count="men">20</span></button>
+            <button class="tab" type="button" data-tab="women">Female <span data-count="women">20</span></button>
+            <button class="tab" type="button" data-tab="kids">Child <span data-count="kids">20</span></button>
+          </div>
+          <label class="select-box" aria-label="Sort products">
+            <span data-icon="filter"></span>
+            <select data-sort>
+              <option value="featured">Featured</option>
+              <option value="low">Price low to high</option>
+              <option value="high">Price high to low</option>
+              <option value="name">Name A to Z</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="product-grid" data-product-grid></div>
+      </section>
+
+      <section class="section alt">
+        <div class="feature-grid">
+          <div class="feature-card reveal"><span data-icon="eye"></span><h3>Virtual-style browsing</h3><p>Large product visuals help clients compare shapes before contacting Shariqa.</p></div>
+          <div class="feature-card reveal"><span data-icon="shield"></span><h3>Clear product tags</h3><p>Every item shows fit, category and lens feature in a fast scanning layout.</p></div>
+          <div class="feature-card reveal"><span data-icon="bag"></span><h3>Selection drawer</h3><p>Add multiple products and turn them into a single email inquiry.</p></div>
+          <div class="feature-card reveal"><span data-icon="phone"></span><h3>Direct support</h3><p>Clients can call 9643528235 for size, stock and price confirmation.</p></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div><img src="assets/logo.svg" alt="Shariqa Eyewear"><p>Premium goggles and frames selected with a professional eye for style, comfort and confidence.</p></div>
+      <div><h3>Shop</h3><div class="footer-links"><a href="shop.html?category=men">Male</a><a href="shop.html?category=women">Female</a><a href="shop.html?category=kids">Child</a></div></div>
+      <div><h3>Company</h3><div class="footer-links"><a href="about.html">About Shariqa</a><a href="contact.html">Contact</a><a href="index.html">Home</a></div></div>
+      <div><h3>Contact</h3><div class="footer-links"><a href="tel:9643528235">9643528235</a><a href="mailto:sharixa393@gmail.com">sharixa393@gmail.com</a></div></div>
+    </footer>
+
+    <div class="drawer-backdrop" data-backdrop></div>
+    <aside class="cart-drawer" data-drawer aria-label="Shopping cart">
+      <div class="drawer-head"><h2>Your selection</h2><button class="icon-button" type="button" data-close-cart aria-label="Close cart"><span data-icon="close"></span></button></div>
+      <div class="drawer-items" data-drawer-items></div>
+      <div class="drawer-foot"><div class="total-row"><span>Total</span><span data-cart-total>Rs. 0</span></div><button class="button gold" type="button" data-checkout>Send inquiry to Shariqa</button></div>
+    </aside>
+
+    <script src="app.js"></script>
+  </body>
+</html>
