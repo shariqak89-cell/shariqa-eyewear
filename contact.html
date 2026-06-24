@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Shariqa | Shariqa Eyewear</title>
+    <meta name="description" content="Contact Shariqa Eyewear by phone, email or inquiry form for goggles and eyewear orders.">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="top-strip">
+      <span>Call 9643528235</span>
+      <span>Send inquiry to Shariqa</span>
+      <span>Email sharixa393@gmail.com</span>
+    </div>
+
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Shariqa Eyewear home"><img src="assets/logo.svg" alt="Shariqa Eyewear"></a>
+      <nav class="nav" data-nav>
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="about.html">About</a>
+        <a class="active" href="contact.html">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <button class="menu-button" type="button" data-menu aria-label="Open menu"><span data-icon="menu"></span></button>
+        <button class="icon-button" type="button" data-open-cart aria-label="Open wishlist"><span data-icon="heart"></span><span class="badge" data-wishlist-count>0</span></button>
+        <button class="icon-button" type="button" data-open-cart aria-label="Open cart"><span data-icon="bag"></span><span class="badge" data-cart-count>0</span></button>
+      </div>
+    </header>
+
+    <main>
+      <section class="page-hero">
+        <span class="eyebrow">Contact Shariqa</span>
+        <h1>Ask about goggles, pricing or availability.</h1>
+        <p>Use the form for product inquiries, category help or bulk requests. The message is prepared for sharixa393@gmail.com.</p>
+      </section>
+
+      <section class="section">
+        <div class="contact-layout">
+          <div class="contact-stack">
+            <div class="contact-card reveal"><span data-icon="phone"></span><h3>Phone</h3><p><a href="tel:9643528235">9643528235</a></p></div>
+            <div class="contact-card reveal"><span data-icon="bag"></span><h3>Email</h3><p><a href="mailto:sharixa393@gmail.com">sharixa393@gmail.com</a></p></div>
+            <div class="contact-card reveal"><span data-icon="eye"></span><h3>Categories</h3><p>Male, female and child goggles with 20 designs in every category.</p></div>
+          </div>
+
+          <form class="form reveal" data-inquiry-form>
+            <div class="section-header">
+              <div>
+                <span class="eyebrow">Inquiry form</span>
+                <h2>Send your request.</h2>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="field">
+                <label for="name">Name</label>
+                <input id="name" name="name" type="text" required placeholder="Your name">
+              </div>
+              <div class="field">
+                <label for="phone">Phone</label>
+                <input id="phone" name="phone" type="tel" required placeholder="Your phone number">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="field">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" placeholder="you@example.com">
+              </div>
+              <div class="field">
+                <label for="category">Category</label>
+                <select id="category" name="category">
+                  <option>Male goggles</option>
+                  <option>Female goggles</option>
+                  <option>Child goggles</option>
+                  <option>Bulk order</option>
+                  <option>Style consultation</option>
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" required placeholder="Write product name, budget, lens preference or any question."></textarea>
+            </div>
+            <button class="button gold" type="submit">Send to Shariqa</button>
+            <p class="status" data-form-status></p>
+            <p class="form-note">This static website opens your email app with the inquiry filled in. For automatic server-side delivery, connect a form service while hosting.</p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div><img src="assets/logo.svg" alt="Shariqa Eyewear"><p>Premium goggles and frames selected with a professional eye for style, comfort and confidence.</p></div>
+      <div><h3>Shop</h3><div class="footer-links"><a href="shop.html?category=men">Male</a><a href="shop.html?category=women">Female</a><a href="shop.html?category=kids">Child</a></div></div>
+      <div><h3>Company</h3><div class="footer-links"><a href="about.html">About Shariqa</a><a href="shop.html">Catalogue</a><a href="index.html">Home</a></div></div>
+      <div><h3>Contact</h3><div class="footer-links"><a href="tel:9643528235">9643528235</a><a href="mailto:sharixa393@gmail.com">sharixa393@gmail.com</a></div></div>
+    </footer>
+
+    <div class="drawer-backdrop" data-backdrop></div>
+    <aside class="cart-drawer" data-drawer aria-label="Shopping cart">
+      <div class="drawer-head"><h2>Your selection</h2><button class="icon-button" type="button" data-close-cart aria-label="Close cart"><span data-icon="close"></span></button></div>
+      <div class="drawer-items" data-drawer-items></div>
+      <div class="drawer-foot"><div class="total-row"><span>Total</span><span data-cart-total>Rs. 0</span></div><button class="button gold" type="button" data-checkout>Send inquiry to Shariqa</button></div>
+    </aside>
+
+    <script src="app.js"></script>
+  </body>
+</html>
