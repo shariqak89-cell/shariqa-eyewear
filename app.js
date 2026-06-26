@@ -1,5 +1,11 @@
 const EMAIL = "sharixa393@gmail.com";
 const PHONE = "9643528235";
+const BRAND = "Shariqa Optical";
+const categoryImages = {
+  men: "assets/goggles-men-01.png",
+  women: "assets/goggles-women-01.png",
+  kids: "assets/goggles-kids-01.png"
+};
 
 const collections = {
   men: {
@@ -95,7 +101,9 @@ const products = Object.entries(collections).flatMap(([category, config]) => {
       frame,
       lens,
       accent: config.shade,
-      tag: n % 5 === 0 ? "New" : n % 4 === 0 ? "Polarized" : n % 3 === 0 ? "UV400" : "Lightweight"
+      tag: n % 5 === 0 ? "New" : n % 4 === 0 ? "Polarized" : n % 3 === 0 ? "UV400" : "Lightweight",
+      image: categoryImages[category],
+      imageClass: `image-variant-${(index % 6) + 1}`
     };
   });
 });
@@ -160,7 +168,9 @@ function icon(name) {
     shield: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg>',
     eye: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>',
     truck: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"><path d="M3 6h12v10H3z"/><path d="M15 10h4l2 3v3h-6z"/><circle cx="7" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg>',
-    filter: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 7h16M7 12h10M10 17h4"/></svg>'
+    filter: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 7h16M7 12h10M10 17h4"/></svg>',
+    instagram: '<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>',
+    facebook: '<svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M14 8.7V7.1c0-.8.5-1 1-1h1.9V3h-2.7C11.4 3 10 4.7 10 7v1.7H7.8V12H10v9h3.5v-9h2.8l.5-3.3H14Z"/></svg>'
   };
   return icons[name] || "";
 }
@@ -170,7 +180,7 @@ function productCard(product) {
   return `
     <article class="product-card reveal" data-category="${product.category}" data-name="${product.title.toLowerCase()} ${product.fit.toLowerCase()} ${product.tag.toLowerCase()}">
       <div class="product-media">
-        <img src="${productSvg(product)}" alt="${product.title} ${collections[product.category].label} goggles">
+        <img class="${product.imageClass}" src="${product.image}" alt="${product.title} ${collections[product.category].label} hyper realistic goggles">
         <button class="icon-button wish ${wished ? "active" : ""}" type="button" data-wish="${product.id}" aria-label="Add ${product.title} to wishlist">${icon("heart")}</button>
       </div>
       <div class="product-info">
@@ -214,8 +224,7 @@ function renderFeatured() {
 
 function renderCategoryVisuals() {
   document.querySelectorAll("[data-category-visual]").forEach((img) => {
-    const product = products.find((item) => item.category === img.dataset.categoryVisual);
-    img.src = productSvg(product, true);
+    img.src = categoryImages[img.dataset.categoryVisual];
   });
 }
 
@@ -265,7 +274,7 @@ function renderCart() {
         if (!product) return "";
         return `
         <div class="drawer-item">
-          <img src="${productSvg(product)}" alt="${product.title}">
+          <img src="${product.image}" alt="${product.title}">
           <div>
             <h3>${product.title}</h3>
             <p>${currency(product.price)} - ${collections[product.category].label}</p>
@@ -315,33 +324,35 @@ function checkoutEmail() {
     return product ? `${product.title} x ${item.qty} - ${currency(product.price * item.qty)}` : "";
   });
   const total = document.querySelector("[data-cart-total]")?.textContent || "";
-  const subject = "New Shariqa Eyewear order inquiry";
-  const body = `Hello Shariqa,%0D%0A%0D%0AI want to ask about these goggles:%0D%0A${encodeURIComponent(lines.join("\n"))}%0D%0A%0D%0ATotal: ${encodeURIComponent(total)}%0D%0APhone: ${PHONE}`;
-  window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${body}`;
+  const form = document.createElement("form");
+  form.method = "POST";
+  form.action = `https://formsubmit.co/${EMAIL}`;
+  form.style.display = "none";
+  const fields = {
+    _subject: "New Shariqa Optical cart inquiry",
+    _template: "table",
+    _captcha: "false",
+    Brand: BRAND,
+    Phone: PHONE,
+    "Selected Goggles": lines.join("\n"),
+    Total: total
+  };
+  Object.entries(fields).forEach(([name, value]) => {
+    const input = document.createElement("input");
+    input.type = "hidden";
+    input.name = name;
+    input.value = value;
+    form.appendChild(input);
+  });
+  document.body.appendChild(form);
+  form.submit();
 }
 
 function wireForms() {
   document.querySelectorAll("[data-inquiry-form]").forEach((form) => {
     form.addEventListener("submit", (event) => {
-      event.preventDefault();
-      const data = new FormData(form);
-      const name = data.get("name") || "";
-      const phone = data.get("phone") || "";
-      const email = data.get("email") || "";
-      const category = data.get("category") || "";
-      const message = data.get("message") || "";
-      const subject = `Shariqa Eyewear inquiry from ${name}`;
-      const body = [
-        `Name: ${name}`,
-        `Phone: ${phone}`,
-        `Email: ${email}`,
-        `Category: ${category}`,
-        "",
-        `Message: ${message}`
-      ].join("\n");
       const status = form.querySelector("[data-form-status]");
-      if (status) status.textContent = "Opening email app for sharixa393@gmail.com...";
-      window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      if (status) status.textContent = "Submitting your inquiry to Shariqa Optical...";
     });
   });
 }
